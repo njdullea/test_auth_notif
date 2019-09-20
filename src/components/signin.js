@@ -16,18 +16,15 @@ export default class SignIn extends React.Component {
     handleSignIn = () => {
         console.log("Handle Sign In");
         const { email, password } = this.state;
-        Auth.signIn({
-            username: email,
-            password,
-            })
+        Auth.signIn(email, password)
             // On success, show Confirmation Code Modal
-            .then(() => this.props.navigation.navigate('Home'))
+            .then(user => this.props.navigation.navigate('Home'))
             // On failure, display error in console
             .catch(err => console.log(err));
     }
 
     goToSignUp = () => {
-        this.props.navigation.navigate('Authentication');
+        this.props.navigation.navigate('SignUp');
     }
 
     render() {

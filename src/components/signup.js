@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Modal } from 'react-native';
 import { Input, Button } from "react-native-elements";
 import { Auth } from 'aws-amplify';
 
-export default class Authentication extends React.Component {
+export default class SignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
