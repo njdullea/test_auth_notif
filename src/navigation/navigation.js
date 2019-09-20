@@ -1,16 +1,14 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-// import Home from './Home';
-// import Friends from './Friends';
 import Authentication from '../components/authentication';
+import Home from '../components/home';
+import SignIn from '../components/signin';
 
 
 const AppNavigator = createStackNavigator({
+  SignIn: { screen: SignIn },
   Authentication: { screen: Authentication },
-  // Home: { screen: Home },
-  // Friends: { screen: Friends},
+  Home: { screen: Home },
 });
-
-// export default AppNavigator;
 
 export default createAppContainer(AppNavigator);
