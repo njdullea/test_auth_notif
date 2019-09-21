@@ -1,8 +1,9 @@
 {
-	"auth": {
-		"testccee8efd": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+    "auth": {
+        "testccee8efd": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "notifications": {}
 }
