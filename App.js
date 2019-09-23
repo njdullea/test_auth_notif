@@ -24,7 +24,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Amplify from 'aws-amplify';
+import Amplify, { Analytics } from 'aws-amplify';
 import aws_exports from './aws-exports';
 import AppContainer from './src/navigation/navigation';
 

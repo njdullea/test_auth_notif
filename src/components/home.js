@@ -1,9 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { Auth } from 'aws-amplify';
+import { Auth, Analytics } from 'aws-amplify';
 
 export default class Home extends React.Component {
 
+    constructor(props) {
+        super(props);
+        const { navigation } = this.props;
+        const user = navigation.getParam('user', 'Unauthenticated');
+        console.log("This is the user: ", user.username);
+        this.updateUserEndpoint(user);
+    }
+
+    updateUserEndpoint = (user) => {
+        Analytics.updateEndpoint({
+            address: user.username,
+            attributes: {},
+        }).then(() => { console.log("Updated User Endpoint")});
+    }
+    
     handleSignOut = () => {
         console.log("Handle Sign Out.");
         Auth.signOut()

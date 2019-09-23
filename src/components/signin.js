@@ -17,10 +17,17 @@ export default class SignIn extends React.Component {
         console.log("Handle Sign In");
         const { email, password } = this.state;
         Auth.signIn(email, password)
-            // On success, show Confirmation Code Modal
-            .then(user => this.props.navigation.navigate('Home'))
+            // On success, go to home page
+            .then(user => this.goToHomeAndPassUserAtts(user))
             // On failure, display error in console
             .catch(err => console.log(err));
+    }
+
+    goToHomeAndPassUserAtts = (user) => {
+        console.log("Go to home and pass user atts");
+        this.props.navigation.navigate('Home', {
+            user: user
+        });
     }
 
     goToSignUp = () => {
