@@ -8,6 +8,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@aws-amplify/pushnotification": "^1.0.34",
     "amazon-cognito-identity-js": "^3.0.15",
     "aws-amplify": "^1.1.40",
     "aws-amplify-react-native": "^2.1.19",

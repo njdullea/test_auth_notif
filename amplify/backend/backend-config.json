@@ -1,15 +1,22 @@
 {
-	"auth": {
-		"testccee8efd": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"notifications": {},
-	"analytics": {
-		"test": {
-			"service": "Pinpoint",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+    "auth": {
+        "testccee8efd": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation"
+        }
+    },
+    "notifications": {
+        "test": {
+            "service": "Pinpoint",
+            "channels": [
+                "FCM"
+            ]
+        }
+    },
+    "analytics": {
+        "test": {
+            "service": "Pinpoint",
+            "providerPlugin": "awscloudformation"
+        }
+    }
 }

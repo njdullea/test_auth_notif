@@ -14,7 +14,13 @@
             "auth": {
                 "testccee8efd": {}
             },
-            "notifications": {}
+            "notifications": {
+                "Pinpoint": {
+                    "Name": "test-test",
+                    "Id": "1ecedbc252a542658f35c8e03a5752f3",
+                    "Region": "us-east-1"
+                }
+            }
         }
     }
 }

@@ -23,6 +23,16 @@ export default class SignIn extends React.Component {
             .catch(err => console.log(err));
     }
 
+    autoSignIn = () => {
+        console.log("Handle Sign In");
+        const { email, password } = this.state;
+        Auth.signIn('ndullea@trinity.edu', 'Cassidy1')
+            // On success, go to home page
+            .then(user => this.goToHomeAndPassUserAtts(user))
+            // On failure, display error in console
+            .catch(err => console.log(err));
+    }
+
     goToHomeAndPassUserAtts = (user) => {
         console.log("Go to home and pass user atts");
         this.props.navigation.navigate('Home', {
@@ -64,6 +74,10 @@ export default class SignIn extends React.Component {
                 <Button
                 title='Sign Up'
                 onPress = { this.goToSignUp }
+                />
+                <Button
+                title='Auto Sign In'
+                onPress = { this.autoSignIn }
                 />
             </View>
         );
