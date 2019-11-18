@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Platform } from 'react-native';
 import { Auth, Analytics } from 'aws-amplify';
-// import { initPushNotifications } from '../helpers/initPNs';
+import { initPushNotifications } from '../helpers/initPNs';
 
 export default class Home extends React.Component {
 
@@ -10,36 +10,40 @@ export default class Home extends React.Component {
         const { navigation } = this.props;
         const user = navigation.getParam('user', 'Unauthenticated');
         console.log("This is the user: ", user.username);
-        // this.updateUserEndpoint(user);
-        this.configurePushNotifications(user);
+        this.updateUserEndpoint(user);
     }
 
-    // updateUserEndpoint = (user) => {
-    //     console.log("Update Endpoint user: ", JSON.stringify(user));
-    //     Analytics.updateEndpoint({
-    //         // address: user.username,
-    //         // attributes: {},
-    //         // channelType: 'GCM',
-    //         // optOut: 'NONE',
-    //     }).then((data) => { console.log("Updated User Endpoint: ", data)});
-    // }
-
-    configurePushNotifications = async (user) => {
-        console.log("Configure push notifications for user: ", JSON.stringify(user));
-        // const cognito_user = Auth.CognitoIdentity.getId;
-        // console.log("--------------- cognito user: ", cognito_user);
-        // const current_authenticated_user = await Auth.currentAuthenticatedUser();
-        // console.log("Current Authenticated User: ", current_authenticated_user);
-        // const current_credentials = await Auth.currentCredentials();
-        // console.log("Current Credentials: ", current_credentials);
-        // const current_user_credentials = await Auth.currentUserCredentials();
-        // console.log("Current user credentials: ", current_user_credentials);
+    // At this point the endpoint already has the endpointId and the device token which
+    // are saved in the aws cache and will be added automatically when we call updateEndpoint.
+    // 
+    // Now that we have logged in, we need to call update endpoint and the user federeted id will be 
+    // added to the cache.
+    //
+    // The channelType is not part of the aws stuff, so we will need to add it in everytime we update the
+    // endpoint.
+    // 
+    // When we need to send specific notifications we will need to also add attributes for the three times of
+    // notifications, possibly username? but we should be fine w federated identify, which is the userId
+    updateUserEndpoint = (user) => {
+        // If we want to add the user's username use these next two lines:
         const current_user_info = await Auth.currentUserInfo();
         console.log("Current User Info: ", current_user_info);
-        // const current_user_pool_user = await Auth.currentUserPoolUser();
-        // console.log("Current user pool user: ", current_user_pool_user);
+        console.log("Update Endpoint user: ", JSON.stringify(user));
+        // let channel = '';
+        // if (Platform.OS == 'android') {
+        //     channel = 'GCM';
+        // } else {
+        //     channel = 'APNS';
+        // }
+        Analytics.updateEndpoint({
+            // At this point each endpoint will have the device token, and the user id, which 
+            // is enough to check the 
+            // attributes: {},
+            // channelType: channel,
+            // optOut: 'NONE',
+            // userId: user.username,
 
-        
+        }).then((data) => { console.log("Updated User Endpoint: ", data)});
     }
     
     handleSignOut = () => {

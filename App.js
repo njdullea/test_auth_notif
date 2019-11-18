@@ -33,7 +33,7 @@ import { initPushNotifications } from './src/helpers/initPNs';
 Amplify.configure(aws_exports);
 Analytics.configure(aws_exports);
 PushNotification.configure(aws_exports);
-// window.LOG_LEVEL = 'DEBUG';
+window.LOG_LEVEL = 'DEBUG';
 
 const App = () => {
   
